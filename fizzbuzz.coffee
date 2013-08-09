@@ -55,14 +55,44 @@ fizzbuzz4 = (l)->
   $('#fb4 p').append a.join ''
 
 ###
-
+  .map()で手を抜いてみる
 ###
 fizzbuzz5 = (l)->
   a = [1..l]
-  $('#fb4 p').append a.map((i)->
+  $('#fb5 p').append a.map((i)->
     _i =  if i % 3 < 1 then 'fizz' else ''
     _i += if i % 5 < 1 then 'buzz' else if i % 3 < 1 then '' else i
   ).join '<br>'
+
+###
+  例えばswitch
+###
+fizzbuzz6 = (l)->
+  a =[]
+  for i in [1..l]
+    switch i % 15
+      when 0 then a.push 'fizzbuzz'
+      when 3 or 6 or 9 then a.push 'fizz'
+      when 5 or 10 then a.push 'buzz'
+      else a.push i
+  $('#fb6 p').append a.join '<br>'
+
+###
+  原始的だけど、処理的には
+###
+fizzbuzz7 = (l)->
+  a = [1..l]
+  $('#fb7 p').append a.map((i)->
+    if i % 3 < 1
+      if i % 5 < 1
+        return 'fizzbuzz'
+      else
+        return 'fizz'
+    else if i % 5 < 1
+      return 'buzz'
+    return i
+  ).join '<br>'
+
 
 $ ()->
   limit = 1000
@@ -71,3 +101,5 @@ $ ()->
   fizzbuzz3(limit)
   fizzbuzz4(limit)
   fizzbuzz5(limit)
+  fizzbuzz6(limit)
+  fizzbuzz7(limit)

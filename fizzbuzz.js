@@ -3,7 +3,7 @@
   あかんやつ
 */
 
-var fizzbuzz1, fizzbuzz2, fizzbuzz3, fizzbuzz4, fizzbuzz5;
+var fizzbuzz1, fizzbuzz2, fizzbuzz3, fizzbuzz4, fizzbuzz5, fizzbuzz6, fizzbuzz7;
 
 fizzbuzz1 = function(l) {
   var i, p, _i, _results;
@@ -99,6 +99,7 @@ fizzbuzz4 = function(l) {
 };
 
 /*
+  .map()で手を抜いてみる
 */
 
 
@@ -109,9 +110,61 @@ fizzbuzz5 = function(l) {
     for (var _i = 1; 1 <= l ? _i <= l : _i >= l; 1 <= l ? _i++ : _i--){ _results.push(_i); }
     return _results;
   }).apply(this);
-  return $('#fb4 p').append(a.map(function(i) {
+  return $('#fb5 p').append(a.map(function(i) {
     _i = i % 3 < 1 ? 'fizz' : '';
     return _i += i % 5 < 1 ? 'buzz' : i % 3 < 1 ? '' : i;
+  }).join('<br>'));
+};
+
+/*
+  例えばswitch
+*/
+
+
+fizzbuzz6 = function(l) {
+  var a, i, _i;
+  a = [];
+  for (i = _i = 1; 1 <= l ? _i <= l : _i >= l; i = 1 <= l ? ++_i : --_i) {
+    switch (i % 15) {
+      case 0:
+        a.push('fizzbuzz');
+        break;
+      case 3 || 6 || 9:
+        a.push('fizz');
+        break;
+      case 5 || 10:
+        a.push('buzz');
+        break;
+      default:
+        a.push(i);
+    }
+  }
+  return $('#fb6 p').append(a.join('<br>'));
+};
+
+/*
+  原始的だけど、処理的には
+*/
+
+
+fizzbuzz7 = function(l) {
+  var a, _i, _results;
+  a = (function() {
+    _results = [];
+    for (var _i = 1; 1 <= l ? _i <= l : _i >= l; 1 <= l ? _i++ : _i--){ _results.push(_i); }
+    return _results;
+  }).apply(this);
+  return $('#fb7 p').append(a.map(function(i) {
+    if (i % 3 < 1) {
+      if (i % 5 < 1) {
+        return 'fizzbuzz';
+      } else {
+        return 'fizz';
+      }
+    } else if (i % 5 < 1) {
+      return 'buzz';
+    }
+    return i;
   }).join('<br>'));
 };
 
@@ -122,5 +175,7 @@ $(function() {
   fizzbuzz2(limit);
   fizzbuzz3(limit);
   fizzbuzz4(limit);
-  return fizzbuzz5(limit);
+  fizzbuzz5(limit);
+  fizzbuzz6(limit);
+  return fizzbuzz7(limit);
 });
