@@ -78,7 +78,7 @@ fizzbuzz6 = (l)->
   $('#fb6 p').append a.join '<br>'
 
 ###
-  原始的だけど、処理的には
+  原始的だけど、処理的には最短のはず…
 ###
 fizzbuzz7 = (l)->
   a = [1..l]
@@ -93,6 +93,15 @@ fizzbuzz7 = (l)->
     return i
   ).join '<br>'
 
+###
+  お約束の配列使用
+###
+fizzbuzz8 = (l)->
+  a = [1..l]
+  b = ['fizzbuzz',null,null,'fizz',null,'buzz','fizz',null,null,'fizz','buzz',null,'fizz',null,null]
+  $('#fb8 p').append a.map((i)->
+    _i = b[i%15] ? i
+  ).join '<br>'
 
 $ ()->
   limit = 1000
@@ -103,3 +112,4 @@ $ ()->
   fizzbuzz5(limit)
   fizzbuzz6(limit)
   fizzbuzz7(limit)
+  fizzbuzz8(limit)

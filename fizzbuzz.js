@@ -3,7 +3,7 @@
   あかんやつ
 */
 
-var fizzbuzz1, fizzbuzz2, fizzbuzz3, fizzbuzz4, fizzbuzz5, fizzbuzz6, fizzbuzz7;
+var fizzbuzz1, fizzbuzz2, fizzbuzz3, fizzbuzz4, fizzbuzz5, fizzbuzz6, fizzbuzz7, fizzbuzz8;
 
 fizzbuzz1 = function(l) {
   var i, p, _i, _results;
@@ -143,7 +143,7 @@ fizzbuzz6 = function(l) {
 };
 
 /*
-  原始的だけど、処理的には
+  原始的だけど、処理的には最短のはず…
 */
 
 
@@ -168,6 +168,25 @@ fizzbuzz7 = function(l) {
   }).join('<br>'));
 };
 
+/*
+  お約束の配列使用
+*/
+
+
+fizzbuzz8 = function(l) {
+  var a, b, _i, _results;
+  a = (function() {
+    _results = [];
+    for (var _i = 1; 1 <= l ? _i <= l : _i >= l; 1 <= l ? _i++ : _i--){ _results.push(_i); }
+    return _results;
+  }).apply(this);
+  b = ['fizzbuzz', null, null, 'fizz', null, 'buzz', 'fizz', null, null, 'fizz', 'buzz', null, 'fizz', null, null];
+  return $('#fb8 p').append(a.map(function(i) {
+    var _ref;
+    return _i = (_ref = b[i % 15]) != null ? _ref : i;
+  }).join('<br>'));
+};
+
 $(function() {
   var limit;
   limit = 1000;
@@ -177,5 +196,6 @@ $(function() {
   fizzbuzz4(limit);
   fizzbuzz5(limit);
   fizzbuzz6(limit);
-  return fizzbuzz7(limit);
+  fizzbuzz7(limit);
+  return fizzbuzz8(limit);
 });
